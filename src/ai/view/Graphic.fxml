@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.validation.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="900.0" styleClass="anchor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ai.view.Controller">
+   <children>
+      <TextArea fx:id="consol" editable="false" focusTraversable="false" layoutX="613.0" layoutY="68.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="379.0" prefWidth="247.0" />
+      <MenuButton fx:id="draw" focusTraversable="false" layoutX="14.0" layoutY="112.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="150.0" text="        رسم" textFill="#dad0d0" AnchorPane.leftAnchor="10.0">
+        <items>
+            <Menu mnemonicParsing="false" text="جدید">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#newTree" text="درخت">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="T" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#newGraph" text="گراف">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="G" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+              </items>
+            </Menu>
+            <MenuItem mnemonicParsing="false" onAction="#open" text="باز کردن" />
+        <MenuItem fx:id="addNode" disable="true" mnemonicParsing="false" onAction="#nodeAdder" text="افزودن گره" />
+            <MenuItem fx:id="removeNode" disable="true" mnemonicParsing="false" onAction="#removeDialogShower" text="حذف گره" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem fx:id="saveMenu" disable="true" mnemonicParsing="false" onAction="#save" text="ذخیره" />
+            <MenuItem fx:id="saveAsMenu" disable="true" mnemonicParsing="false" onAction="#saveAs" text="ذخیره بعنوان..." />
+            <MenuItem fx:id="imageMenu" disable="true" mnemonicParsing="false" onAction="#saveImage" text="ایجاد عکس" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#exit" text="خروج" />
+        </items>
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </MenuButton>
+      <MenuButton fx:id="edit1" focusTraversable="false" layoutX="14.0" layoutY="173.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="150.0" text="      جستجو" textFill="#dad0d0" AnchorPane.leftAnchor="10.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="16.0" />
+         </font>
+         <items>
+            <MenuItem fx:id="bfs" disable="true" mnemonicParsing="false" onAction="#BFS" text="جستجوی اول سطح" />
+            <Menu mnemonicParsing="false" text="جستجوی اول عمق">
+              <items>
+                  <MenuItem fx:id="dfs" disable="true" mnemonicParsing="false" onAction="#DFS" text="اول عمق" />
+                <MenuItem disable="true" mnemonicParsing="false" text="محدود شده" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="غیر تکراری" />
+              </items>
+            </Menu>
+            <MenuItem fx:id="uniform" disable="true" mnemonicParsing="false" onAction="#uniformSearch" text="جستجوی یکنواخت" />
+            <MenuItem fx:id="duplicate" disable="true" mnemonicParsing="false" text="جستجوی دوطرفه" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="edit" focusTraversable="false" layoutX="14.0" layoutY="234.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="150.0" text="      ویرایش" textFill="#dad0d0" AnchorPane.leftAnchor="10.0">
+        <items>
+            <MenuItem disable="true" mnemonicParsing="false" text="بازگشت" />
+            <MenuItem disable="true" mnemonicParsing="false" text="بعدی" />
+            <SeparatorMenuItem disable="true" mnemonicParsing="false" />
+            <MenuItem disable="true" mnemonicParsing="false" text="برش" />
+            <MenuItem disable="true" mnemonicParsing="false" text="کپی" />
+            <MenuItem disable="true" mnemonicParsing="false" text="جای گذاری" />
+        <MenuItem disable="true" mnemonicParsing="false" text="حذف" />
+        </items>
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </MenuButton>
+      <MenuButton fx:id="tools" focusTraversable="false" layoutX="14.0" layoutY="294.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="150.0" text="       ابزار" textFill="#dad0d0" AnchorPane.leftAnchor="10.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <items>
+            <Menu mnemonicParsing="false" text="تغییر طول و عرض">
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#increse" text="افزایش">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="EQUALS" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#decrese" text="کاهش">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="MINUS" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="تغییر اندازه طولی">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#increseWidth" text="افزایش">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="EQUALS" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#decreseWidth" text="کاهش">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="MINUS" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="تغییر اندازه عرضی">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#increseHeight" text="افزایش">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="EQUALS" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#decreseHeight" text="کاهش">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="MINUS" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+              </items>
+            </Menu>
+            <MenuItem mnemonicParsing="false" onAction="#opencolorDialog" text="انتخاب رنگها" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="help" focusTraversable="false" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="150.0" text="     راهنمایی" textFill="#dad0d0" AnchorPane.leftAnchor="10.0">
+        <items>
+            <MenuItem mnemonicParsing="false" onAction="#aboutApp" text="درباره برنامه" />
+          <MenuItem mnemonicParsing="false" onAction="#aboutUs" text="درباره ما" />
+        </items>
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </MenuButton>
+      <Button fx:id="lightClose" focusTraversable="false" layoutX="40.0" layoutY="437.0" onAction="#exit" onMouseExited="#darker" prefHeight="64.0" prefWidth="64.0" styleClass="button-close-light" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="lightMinimize" focusTraversable="false" layoutX="107.0" layoutY="437.0" onAction="#minimize" onMouseExited="#darker" prefHeight="64.0" prefWidth="64.0" styleClass="button-minimize-light" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="close" focusTraversable="false" layoutX="40.0" layoutY="437.0" onMouseEntered="#lighter" prefHeight="64.0" prefWidth="64.0" styleClass="button-close" />
+      <Button fx:id="minimize" focusTraversable="false" layoutX="107.0" layoutY="437.0" onMouseEntered="#lighter" prefHeight="64.0" prefWidth="64.0" styleClass="button-minimize" />
+      <ScrollPane fx:id="scrollDesk" layoutX="176.0" layoutY="68.0" pannable="true" prefHeight="379.0" prefWidth="418.0" style="-fx-background-color: transparent;">
+         <content>
+            <AnchorPane fx:id="desk" onMouseClicked="#printGraphNode" prefHeight="480.0" prefWidth="640.0" />
+         </content>
+      </ScrollPane>
+      <ScrollPane fx:id="scroll" layoutX="176.0" layoutY="68.0" pannable="true" prefHeight="379.0" prefWidth="418.0" style="-fx-background-color: transparent;" visible="false">
+         <content>
+            <Canvas fx:id="paper" height="480.0" width="640.0" />
+         </content>
+      </ScrollPane>
+      <Slider fx:id="slider" disable="true" layoutX="315.0" layoutY="462.0" max="400.0" min="15.0" onMouseClicked="#changeSize" onMouseDragged="#changeSize" value="40.0" />
+      <AnchorPane fx:id="treeDialog" layoutX="175.0" layoutY="130.0" onMouseDragged="#move" prefHeight="177.0" prefWidth="273.0" style="-fx-background-color: #000f;" visible="false">
+         <children>
+            <Label focusTraversable="false" layoutX="110.0" layoutY="5.0" text="گره جدید" textFill="#e8e3e3" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="treeNodeName" layoutX="21.0" layoutY="25.0" promptText="A, B, C, ..." AnchorPane.leftAnchor="20.0" />
+            <TextField fx:id="treeNodeCost" layoutX="21.0" layoutY="61.0" text="0" AnchorPane.leftAnchor="20.0" />
+            <ComboBox fx:id="treeNodeParent" layoutX="21.0" layoutY="104.0" prefHeight="25.0" prefWidth="157.0" promptText="root" AnchorPane.leftAnchor="20.0" />
+            <Button layoutX="24.0" layoutY="140.0" onAction="#treeNodeAdder" style="-fx-background-color: #222f;" text="تایید" textFill="#ebe0e0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" />
+            <Button layoutX="69.0" layoutY="140.0" onAction="#treeDialogCloser" style="-fx-background-color: #222f;" text="بستن" textFill="#ebe0e0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="69.0" />
+            <Label focusTraversable="false" layoutX="209.0" layoutY="35.0" text="نام:" textFill="#e8e3e3" AnchorPane.rightAnchor="20.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label focusTraversable="false" layoutX="214.0" layoutY="70.0" text="هزینه:" textFill="#e8e3e3" AnchorPane.rightAnchor="20.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label focusTraversable="false" layoutX="199.0" layoutY="115.0" text="نام والد:" textFill="#e8e3e3" AnchorPane.rightAnchor="20.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="colorDialog" layoutX="185.0" layoutY="140.0" onMouseDragged="#move" prefHeight="177.0" prefWidth="215.0" style="-fx-background-color: #000f;" visible="false">
+         <children>
+            <ColorPicker fx:id="nodeColorPicker" layoutX="20.0" layoutY="37.0" prefHeight="25.0" prefWidth="103.0" />
+            <Label layoutX="65.0" layoutY="5.0" text="انتخاب رنگ ها" textFill="#e8e3e3" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button layoutX="24.0" layoutY="140.0" onAction="#setColors" style="-fx-background-color: #222f;" text="تایید" textFill="#ebe0e0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" />
+            <Button layoutX="69.0" layoutY="140.0" onAction="#closeColorDialog" style="-fx-background-color: #222f;" text="انصراف" textFill="#ebe0e0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="69.0" />
+            <Label layoutX="150.0" layoutY="40.0" text="رنگ گره:" textFill="#e8e3e3" AnchorPane.rightAnchor="20.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="147.0" layoutY="105.0" text="رنگ متن:" textFill="#e8e3e3" AnchorPane.rightAnchor="20.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <ColorPicker fx:id="textColorPicker" layoutX="21.0" layoutY="105.0" prefHeight="25.0" prefWidth="103.0" />
+            <ColorPicker fx:id="edgeColorPicker" layoutX="21.0" layoutY="72.0" prefHeight="25.0" prefWidth="103.0" />
+            <Label layoutX="147.0" layoutY="75.0" text="رنگ یالها:" textFill="#e8e3e3">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="graphDialog" layoutX="8.0" layoutY="109.0" minWidth="145.0" onMouseDragged="#move" prefHeight="230.0" prefWidth="145.0" style="-fx-background-color: #000f;" visible="false">
+         <children>
+            <Accordion layoutX="6.0" layoutY="28.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+              <panes>
+                <TitledPane fx:id="graphTitled" animated="false" expanded="false" prefHeight="80.0" prefWidth="100.0" text="افزودن گره">
+                  <content>
+                    <AnchorPane maxHeight="160.0" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="120.0" layoutY="16.0" text="نام:" textFill="#e8e3e3">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="55.0" layoutY="50.0" onAction="#graphDialogCloser" style="-fx-background-color: #222f;" text="بستن" textFill="#ebe0e0" />
+                              <Button layoutX="5.0" layoutY="50.0" onMouseClicked="#graphNodeAdder" style="-fx-background-color: #222f;" text="تایید" textFill="#ebe0e0" />
+                              <TextField fx:id="graphNodeName" layoutX="10.0" layoutY="5.0" prefHeight="30.0" prefWidth="90.0" promptText="A, B, C, ..." />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                </TitledPane>
+                <TitledPane animated="false" expanded="false" maxHeight="160.0" prefHeight="160.0" prefWidth="200.0" text="افزودن یال">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="121.0" layoutY="8.0" text="از:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="120.0" layoutY="40.0" text="به:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="100.0" layoutY="75.0" text="هزینه:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="graphSourse" layoutX="5.0" layoutY="5.0" prefHeight="20.0" prefWidth="90.0" promptText="Source" />
+                              <ComboBox fx:id="graphTarget" layoutX="5.0" layoutY="40.0" prefHeight="20.0" prefWidth="90.0" promptText="Target" />
+                              <Button layoutX="5.0" layoutY="110.0" onAction="#graphEdgeAdder" style="-fx-background-color: #222f;" text="تایید" textFill="#ebe0e0" />
+                              <Button layoutX="55.0" layoutY="110.0" onAction="#graphDialogCloser" style="-fx-background-color: #222f;" text="بستن" textFill="#ebe0e0" />
+                              <TextField fx:id="graphEdgeCost" layoutX="5.0" layoutY="65.0" prefHeight="20.0" prefWidth="90.0" text="1" />
+                           </children></AnchorPane>
+                  </content>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                </TitledPane>
+              </panes>
+            </Accordion>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="removeDialog" layoutX="185.0" layoutY="140.0" onMouseDragged="#move" prefHeight="117.0" prefWidth="215.0" style="-fx-background-color: #000f;" visible="false">
+         <children>
+            <Label layoutX="80.0" layoutY="5.0" text="حذف گره" textFill="#e8e3e3" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="removeNodeName" layoutX="21.0" layoutY="25.0" prefHeight="30.0" prefWidth="127.0" promptText="A, B, C, ..." AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="35.0" />
+            <Button layoutX="24.0" layoutY="140.0" onAction="#nodeRemover" style="-fx-background-color: #222f;" text="تایید" textFill="#ebe0e0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" />
+            <Button layoutX="69.0" layoutY="140.0" onAction="#removeDialogCloser" style="-fx-background-color: #222f;" text="بستن" textFill="#ebe0e0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="69.0" />
+            <Label layoutX="209.0" layoutY="35.0" text="نام:" textFill="#e8e3e3" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="45.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

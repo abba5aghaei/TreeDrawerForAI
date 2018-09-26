@@ -1,0 +1,114 @@
+.anchor{
+	-fx-background-color: transparent;
+    -fx-background-image: url('bg.png');
+}
+.button-close{
+	-fx-background-image: url('close.png');
+	-fx-background-color: transparent;
+}
+.button-minimize{
+	-fx-background-image: url('minimize.png');
+	-fx-background-color: transparent;
+}
+.menu-button{
+	-fx-background-color: transparent;
+	-fx-background-image: url('buttons.png');
+}
+.button-close-light{
+	-fx-background-image: url('close-light.png');
+	-fx-background-color: transparent;
+}
+.button-minimize-light{
+	-fx-background-image: url('minimize-light.png');
+	-fx-background-color: transparent;
+}
+.combo-box{
+	-fx-background-color: darkgray;
+}
+.color-picker{
+	-fx-background-color: #222f;
+}
+.scroll-pane>.viewport{
+	-fx-background-color: #2226;
+}
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color: #2226;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0.0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color:  #222a;
+    -fx-background-radius: 5.0em;
+}
+.scroll-pane > .corner {
+    -fx-background-color:  #2226;
+}
+.scroll-pane{
+	-fx-background-color: transparent;
+}
+.text-field{
+    -fx-font-size: 14.0;
+    -fx-text-fill: #ffff;
+    -fx-background-color: transparent;
+}
+.text-field:focused {
+    -fx-focus-color: #ffff;
+}
+.text-area{
+    -fx-font-size: 12.0;
+    -fx-text-fill: #ffff;
+    -fx-background-color: #0008;
+}
+.text-area .content{
+    -fx-background-color: transparent;
+}
+.slider .thumb{
+	-fx-background-color: black;
+}
+.slider{
+	-fx-background-color: transparent;
+}
+.titled-pane{
+	-fx-background-color: black;
+	-fx-text-fill: white;
+}
+.titled-pane:focused{
+	-fx-background-color: black;
+	-fx-text-fill: white;
+}
+.titled-pane > .title{
+	-fx-background-color: #222f;
+	-fx-text-fill: white;
+}
+.titled-pane:focused > .title{
+	-fx-background-color: #222f;
+	-fx-text-fill: white;
+}
+.titled-pane > .title > .arrow-button{
+	-fx-background-color: #222f;
+	-fx-text-fill: white;
+}
+.titled-pane > .title > .arrow-button .arrow{
+	-fx-background-color: #222f;
+	-fx-text-fill: white;
+}
+.titled-pane:collapsed > .title > .arrow-button .arrow{
+	-fx-background-color: gold;
+	-fx-text-fill: aqua;
+}
+.titled-pane > *.content{
+	-fx-background-color: black;
+	-fx-text-fill: white;
+}
