@@ -39,7 +39,7 @@ public class Main extends Application {
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.setResizable(false);
 			stage.setTitle("هوش مصنوعی");
-			stage.getIcons().addAll(new Image(getClass().getResourceAsStream("view/icon.png")));
+			stage.getIcons().addAll(new Image(getClass().getResourceAsStream("view/Icon.png")));
 			controller = loader.getController();
 			controller.setMain(this);
 			stage.show();
